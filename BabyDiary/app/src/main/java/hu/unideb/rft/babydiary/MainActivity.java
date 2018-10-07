@@ -33,11 +33,18 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
 
         if (id == R.id.itemLine2){
-//            Toast.makeText(this, "Ismerős meghívása", Toast.LENGTH_SHORT).show();
+ //           Toast.makeText(this, "Ismerős meghívása", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.setClass(this, RegActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.itemLine1){
+            Intent intent = new Intent();
+            intent.setClass(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 }
