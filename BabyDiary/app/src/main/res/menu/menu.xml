@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Item1"
+        android:id="@+id/title"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Item2"
+        android:id="@+id/title2"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Item3"
+        android:id="@+id/title3"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/tite4"
+        android:title="Item4"
+        app:showAsAction="never" >
+        <menu>
+
+            <item
+                android:id="@+id/tite41"
+                android:title="Item41"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/tite42"
+                android:title="Item42"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/tite43"
+                android:title="Item43"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
+
+    <item
+        android:title="Item5"
+        android:id="@+id/title5"
+        app:showAsAction="never"/>
+    <item
+        android:title="Item6"
+        android:id="@+id/title6"
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:title="Item61"
+                android:id="@+id/title61"
+                app:showAsAction="never"/>
+            <item
+                android:title="Item62"
+                android:id="@+id/title62"
+                app:showAsAction="never"/>
+
+            <item
+                android:title="Item63"
+                android:id="@+id/title63"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+
+
+
+
+    <item
+        android:title="ItemLine2"
+        android:id="@+id/itemLine2"
+        android:icon="@drawable/icon2"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="ItemLine1"
+        android:id="@+id/itemLine1"
+        android:icon="@drawable/icon1"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="ItemLine3"
+        android:id="@+id/itemLine3"
+        android:icon="@drawable/icon3"
+        app:showAsAction="always"/>
+
+
+
+</menu>
