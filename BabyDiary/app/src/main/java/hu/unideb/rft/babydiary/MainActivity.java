@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
             intent.setClass(this, LoginActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.itemLine3){
+            Intent intent = new Intent();
+            intent.setClass(this, TodoActivity.class);
+            startActivity(intent);
+        }
 
 
         return super.onOptionsItemSelected(item);
