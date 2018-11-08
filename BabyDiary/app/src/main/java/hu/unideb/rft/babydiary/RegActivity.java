@@ -18,6 +18,7 @@ public class RegActivity extends Activity{
     private EditText et_felhasznalonev, et_jelszo, et_email, et_vezeteknev, et_keresztnev;
     private String felhasznalonev, jelszo, email, vezeteknev, keresztnev;
     Button regButton;
+    private String hibauzenet = "hiba történt";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,4 +48,28 @@ public class RegActivity extends Activity{
         keresztnev = et_keresztnev.getText().toString();
     }
 
+
+    private boolean validal(){
+        if (felhasznalonev.isEmpty() || felhasznalonev.length() >32){
+            hibauzenet = "hibás felhasználónév";
+            return false;
+        }
+        else if(jelszo.isEmpty() || jelszo.length() < 4 || jelszo.length() > 32){
+            hibauzenet = "Hibás jelszó. Min 4 max 30 karakter.";
+            return false;
+        }
+        else if (email.isEmpty() || email.length() > 32){
+            hibauzenet = "Hibás vagy túl hosszú emailcím.";
+            return false;
+        }
+        else if (vezeteknev.isEmpty() || vezeteknev.length() > 32){
+            hibauzenet = "Hibás vezetéknév.";
+            return false;
+        }
+        else if (keresztnev.isEmpty() || keresztnev.length() > 32){
+            hibauzenet = "Hibás keresztnév.";
+            return false;
+        }
+        return true;
+    }
 }
