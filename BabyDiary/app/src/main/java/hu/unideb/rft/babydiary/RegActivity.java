@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by VozarPet on 2018. 09. 22...
@@ -35,11 +36,22 @@ public class RegActivity extends Activity{
     public void onClick(View v){
         if (v.getId() == R.id.registration_button){
             inicializal();
-            validal();
-            regisztral();
+            if (!validal()){
+                Toast.makeText(this, hibauzenet, Toast.LENGTH_SHORT).show();
+            }
+            else{
+                if(regisztral()){
+                    Toast.makeText(this, "Sikeres regisztráció.", Toast.LENGTH_SHORT).show();
+                    // TODO idővonal elindítása!!!
+                }
+                else{
+                    Toast.makeText(this, hibauzenet, Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 
+    // beolvassa az adatokat a UI-rol
     private void inicializal(){
         felhasznalonev = et_felhasznalonev.getText().toString();
         jelszo = et_jelszo.getText().toString();
@@ -48,7 +60,7 @@ public class RegActivity extends Activity{
         keresztnev = et_keresztnev.getText().toString();
     }
 
-
+    // Validálja a beolvasott adatokat
     private boolean validal(){
         if (felhasznalonev.isEmpty() || felhasznalonev.length() >32){
             hibauzenet = "hibás felhasználónév";
@@ -71,5 +83,13 @@ public class RegActivity extends Activity{
             return false;
         }
         return true;
+    }
+
+    // Regisztrál
+    private boolean regisztral(){
+        /*
+        TODO szerver regisztrációt megírni ha sikertelen, vagy elszáll kezelni, hibaüzenetbe beírni!!!
+         */
+     return true;
     }
 }
