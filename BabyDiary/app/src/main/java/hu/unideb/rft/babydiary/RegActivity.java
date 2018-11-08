@@ -33,12 +33,18 @@ public class RegActivity extends Activity{
 
     public void onClick(View v){
         if (v.getId() == R.id.registration_button){
-            Inicializal();
+            inicializal();
             validal();
             regisztral();
         }
     }
 
-    
+    private void inicializal(){
+        felhasznalonev = et_felhasznalonev.getText().toString();
+        jelszo = et_jelszo.getText().toString();
+        email = et_email.getText().toString();
+        vezeteknev = et_vezeteknev.getText().toString();
+        keresztnev = et_keresztnev.getText().toString();
+    }
 
 }
