@@ -1,5 +1,6 @@
 package hu.unideb.rft.babydiary;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -48,8 +49,29 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
     }
 
+    // Eldob régi táblát, ha létezik és létrehoz ujra
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        onCreate(db);
+    }
+
+    // új User hozzáadása (regisztráció)
+    public int addUser(User user){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_USERNAME, user.getUsername());
+        values.put(KEY_PASSWORD, user.getPassword());
+        values.put(KEY_EMAIL, user.getEmail());
+        values.put(KEY_USERROLE, user.getUserrole());
+        values.put(KEY_FIRSTNAME, user.getFirstname());
+        values.put(KEY_LASTNAME, user.getLastname());
+
+        int updateRows = db.update(TABLE_USER, values, KEY_ID + " + ?", new String[]{String.valueOf(user.getId())});
+
+        db.close();
+
+        return updateRows;
     }
 }
