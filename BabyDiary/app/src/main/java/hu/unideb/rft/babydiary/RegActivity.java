@@ -43,7 +43,8 @@ public class RegActivity extends Activity{
             }
             else{
                 if(szabadUsername()){
-                    // TODO idővonal elindítása!!!
+                    newUser.setId(dbHandler.getUsersCount()+1);
+                    dbHandler.addUser(newUser);
                     Toast.makeText(this, "Sikeres regisztráció.", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -89,7 +90,6 @@ public class RegActivity extends Activity{
 
     // Regisztrál
     private boolean szabadUsername(){
-      User newUser = new User();
       if(dbHandler.existsUser(felhasznalonev)){
           hibauzenet = "A felhasználónév már foglalt!";
           et_felhasznalonev.setText("");
