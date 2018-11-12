@@ -79,7 +79,7 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         return updateRows;
     }
 
-    // 1 User lekérése db-ből
+    // 1 User lekérése db-ből ID alapján
     public User getUser(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USER,
@@ -97,6 +97,26 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
        db.close();
 
        return user;
+    }
+
+    // 1 User lekérése db-ből felhasználónév alapján
+    public User getUser(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USER,
+                new String[]{KEY_ID, KEY_USERNAME, KEY_PASSWORD, KEY_EMAIL, KEY_USERROLE, KEY_FIRSTNAME, KEY_LASTNAME},
+                KEY_USERNAME + "=?",
+                new String[]{username},
+                null,
+                null,
+                null,
+                null);
+        cursor.moveToFirst();
+        User user = new User(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                cursor.getString(4), cursor.getString(5), cursor.getString(6));
+        cursor.close();
+        db.close();
+
+        return user;
     }
 
     // összes User lekérdezése
