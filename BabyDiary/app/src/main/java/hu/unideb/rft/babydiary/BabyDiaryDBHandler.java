@@ -129,8 +129,22 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Összes user törlése
+    public void deleteAllUser(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_USER, null, null);
+        db.close();
+    }
 
+    // Userek számának lekérdezése
+    public int getUsersCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER, null);
+        int count = cursor.getCount();
 
+        cursor.close();
+        db.close();
 
-
+        return count;
+    }
 }
