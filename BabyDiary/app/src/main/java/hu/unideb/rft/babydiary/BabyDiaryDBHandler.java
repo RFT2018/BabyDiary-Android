@@ -119,6 +119,18 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         return user;
     }
 
+    // user szerepel-e táblába
+    public boolean existsUser(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT 1 FROM " + TABLE_USER + " WHERE " + KEY_USERNAME +  " =? " + username, null);
+        if (cursor.getCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     // összes User lekérdezése
     public List<User> getAllUser(){
         List<User> userLista = new ArrayList<User>();
