@@ -122,7 +122,12 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         return userLista;
     }
 
-    
+    // Egy user törlése
+    public void deleteUser(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_USER, KEY_ID +" = ?", new String[]{Integer.toString(id)});
+        db.close();
+    }
 
 
 
