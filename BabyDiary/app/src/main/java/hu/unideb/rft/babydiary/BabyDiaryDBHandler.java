@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Bro on 2018. 11. 11..
  * DB kezelése, tábla műveletek
@@ -96,5 +99,33 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
        return user;
     }
 
+    // összes User lekérdezése
+    public List<User> getAllUser(){
+        List<User> userLista = new ArrayList<User>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER, null);
+
+        while (cursor.moveToNext()){
+            User user = new User();
+            user.setId(Integer.parseInt(cursor.getString(0)));
+            user.setUsername(cursor.getString(1));
+            user.setPassword(cursor.getString(2));
+            user.setEmail(cursor.getString(3));
+            user.setUserrole(cursor.getString(4));
+            user.setFirstname(cursor.getString(5));
+            user.setLastname(cursor.getString(6));
+            userLista.add(user);
+        }
+        cursor.close();
+        db.close();
+
+        return userLista;
+    }
+
     
+
+
+
+
+
 }
