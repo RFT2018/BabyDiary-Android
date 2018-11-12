@@ -20,6 +20,8 @@ public class RegActivity extends Activity{
     private String felhasznalonev, jelszo, email, vezeteknev, keresztnev;
     Button regButton;
     private String hibauzenet = "hiba történt";
+    BabyDiaryDBHandler dbHandler = new BabyDiaryDBHandler(this);
+    User newUser = new User();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,9 +42,9 @@ public class RegActivity extends Activity{
                 Toast.makeText(this, hibauzenet, Toast.LENGTH_SHORT).show();
             }
             else{
-                if(regisztral()){
-                    Toast.makeText(this, "Sikeres regisztráció.", Toast.LENGTH_SHORT).show();
+                if(szabadUsername()){
                     // TODO idővonal elindítása!!!
+                    Toast.makeText(this, "Sikeres regisztráció.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(this, hibauzenet, Toast.LENGTH_SHORT).show();
@@ -86,10 +88,24 @@ public class RegActivity extends Activity{
     }
 
     // Regisztrál
-    private boolean regisztral(){
-        /*
-        TODO szerver regisztrációt megírni ha sikertelen, vagy elszáll kezelni, hibaüzenetbe beírni!!!
-         */
+    private boolean szabadUsername(){
+      User newUser = new User();
+      if(dbHandler.existsUser(felhasznalonev)){
+          hibauzenet = "A felhasználónév már foglalt!";
+          et_felhasznalonev.setText("");
+          return false;
+      }
      return true;
+    }
+
+    //Létrheozza a User objektumot adatokból
+    public void letrehozUser(){
+        newUser.setId(dbHandler.getUsersCount()+1);
+        newUser.setUsername(felhasznalonev);
+        newUser.setPassword(jelszo);
+        newUser.setEmail(email);
+        newUser.setUserrole("Parent");
+        newUser.setFirstname(vezeteknev);
+        newUser.setLastname(keresztnev);
     }
 }
