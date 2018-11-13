@@ -37,7 +37,7 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
 
     public BabyDiaryDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABEASE_VERSION);
-        letrehozTabla();
+//        letrehozTabla();
     }
 
     // Táblák éterehozása
@@ -58,6 +58,7 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
                 + KEY_FIRSTNAME + " TEXT,"
                 + KEY_LASTNAME + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
+        db.close();
     }
 
     // Eldob régi táblát, ha létezik és létrehoz ujra
