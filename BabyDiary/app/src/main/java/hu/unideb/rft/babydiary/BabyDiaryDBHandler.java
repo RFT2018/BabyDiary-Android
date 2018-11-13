@@ -42,7 +42,8 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
     // Táblák éterehozása
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_USER_TABLE = "CREATE TABLE" + TABLE_USER + "("
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "("
                 + KEY_ID +" INTEGER PRIMARY KEY,"
                 + KEY_USERNAME + " TEXT,"
                 + KEY_PASSWORD + " TEXT,"
@@ -62,7 +63,7 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
     }
 
     // új User hozzáadása (regisztráció)
-    public int addUser(User user){
+    public void addUser(User user){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USERNAME, user.getUsername());
@@ -72,11 +73,9 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         values.put(KEY_FIRSTNAME, user.getFirstname());
         values.put(KEY_LASTNAME, user.getLastname());
 
-        int updateRows = db.update(TABLE_USER, values, KEY_ID + " + ?", new String[]{String.valueOf(user.getId())});
-
+        db.insert(TABLE_USER, null, values);
         db.close();
 
-        return updateRows;
     }
 
     // 1 User lekérése db-ből ID alapján
