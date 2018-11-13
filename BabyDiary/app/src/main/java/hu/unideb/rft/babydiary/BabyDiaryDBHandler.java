@@ -92,6 +92,15 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
 
     }
 
+    // validálja a felhasználó emailcíméhez tartozó jelszót
+    public boolean validPasswordToEmail(String email, String password){
+        User selectedUser = getUserByemail(email);
+        if (password.equals(selectedUser.getPassword())){
+            return true;
+        }
+        return false;
+    }
+
     // 1 User lekérése db-ből ID alapján
     public User getUser(int id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -132,10 +141,42 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
         return user;
     }
 
+    // 1 User lekérdezése db-ből emailcim apaján
+    public User getUserByemail(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USER,
+                new String[]{KEY_ID, KEY_USERNAME, KEY_PASSWORD, KEY_EMAIL, KEY_USERROLE, KEY_FIRSTNAME, KEY_LASTNAME},
+                KEY_EMAIL + "=?",
+                new String[]{email},
+                null,
+                null,
+                null,
+                null);
+        cursor.moveToFirst();
+        User user = new User(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                cursor.getString(4), cursor.getString(5), cursor.getString(6));
+        cursor.close();
+        db.close();
+
+        return user;
+    }
+
     // user szerepel-e táblába
     public boolean existsUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USERNAME +  " = '" + username + "'", null);
+        if (cursor.getCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    // user szerepel-e táblába emailcím alapján
+    public boolean existsUserByEmail(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + KEY_EMAIL +  " = '" + email + "'", null);
         if (cursor.getCount()>0){
             return true;
         }
