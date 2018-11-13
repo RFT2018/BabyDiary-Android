@@ -43,9 +43,10 @@ public class RegActivity extends Activity{
             }
             else{
                 if(szabadUsername()){
+                    letrehozUser();
                     newUser.setId(dbHandler.getUsersCount()+1);
                     dbHandler.addUser(newUser);
-                    Toast.makeText(this, "Sikeres regisztráció.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Sikeres regisztráció. Üdvözöllek " +felhasznalonev, Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(this, hibauzenet, Toast.LENGTH_SHORT).show();
