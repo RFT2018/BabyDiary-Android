@@ -1,6 +1,7 @@
 package hu.unideb.rft.babydiary;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -52,6 +53,16 @@ public class LoginActivity extends Activity{
             else{
                 Toast.makeText(this, ""+hibauzenet, Toast.LENGTH_SHORT).show();
             }
+        }
+        else if (v.getId() == tv_elfelejtettJelszo.getId()){
+            //TODO uj jelszót generálni, beírni DB-be és elküldeni a megadott emailcímre
+            Toast.makeText(this, "Az új jelszót elküldtük a megadott emailcímre.", Toast.LENGTH_SHORT).show();
+        }
+        else if (v.getId() == tv_nemRegelt.getId()){
+            Intent intent = new Intent();
+            intent.setClass(this, RegActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
