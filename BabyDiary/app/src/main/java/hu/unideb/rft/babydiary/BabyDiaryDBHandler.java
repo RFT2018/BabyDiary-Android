@@ -134,7 +134,7 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
     // user szerepel-e táblába
     public boolean existsUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT 1 FROM " + TABLE_USER + " WHERE " + KEY_USERNAME +  " =? " + username, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USERNAME +  " = '" + username + "'", null);
         if (cursor.getCount()>0){
             return true;
         }
