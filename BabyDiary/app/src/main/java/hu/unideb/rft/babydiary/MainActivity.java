@@ -1,6 +1,7 @@
 package hu.unideb.rft.babydiary;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,10 +14,33 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    BabyDiaryDBHandler mydb;
+    boolean loggedIn = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mydb = new BabyDiaryDBHandler(this);
+        if (loggedIn){
+            Intent intent = new Intent();
+            intent.setClass(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+
+//        if(mydb.existsUser("Teszt")){
+//            Toast.makeText(this, "Már létezik a felhasználó", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+//            Toast.makeText(this, "nem találtam a felhasználót " , Toast.LENGTH_SHORT).show();
+//        }
+//        mydb.addUser(new User(1,"Teszt", "Jelszo", "Emailcim", "Szülő", "Vezetéknév", "Keresztnév"));
+//        User kiolvasottUser = mydb.getUser(1);
+//        Toast.makeText(this, "" + kiolvasottUser.getUsername(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "" + mydb.getUsersCount(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -52,4 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
