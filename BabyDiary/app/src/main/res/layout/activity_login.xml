@@ -114,25 +114,26 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/logintv3"
+                    android:id="@+id/login_elfelejtettJelszo_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:onClick="onClick"
                     android:text="Elfelejtetted a jelszavad?"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/login_stayLoggedIn_chb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:buttonTint="@android:color/background_light"
+                    android:text="Bejelentkezve maradok"
                     android:textColor="@android:color/background_light"
-                    android:textSize="12sp"
-                    android:text="Bejelentkezve maradok" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -153,7 +154,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/login_button"
+                    android:id="@+id/login_Login_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"
@@ -171,11 +172,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/logintv4"
+                    android:id="@+id/login_notRegisteredYet_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:onClick="onClick"
                     android:text="Még nem regisztráltál?"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"

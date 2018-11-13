@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mydb = new BabyDiaryDBHandler(this);
-        if (loggedIn){
+        if (!loggedIn){
             Intent intent = new Intent();
             intent.setClass(this, LoginActivity.class);
             startActivity(intent);
