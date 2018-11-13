@@ -37,12 +37,18 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
 
     public BabyDiaryDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABEASE_VERSION);
+        letrehozTabla();
     }
 
     // Táblák éterehozása
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+
+    }
+
+    // létrehozza a táblát, ha még nem létezik
+    public void letrehozTabla(){
+        SQLiteDatabase db = getWritableDatabase();
         String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "("
                 + KEY_ID +" INTEGER PRIMARY KEY,"
                 + KEY_USERNAME + " TEXT,"
@@ -60,6 +66,13 @@ public class BabyDiaryDBHandler extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(db);
+    }
+
+    //Töröl tábla
+    public void deleteTable(String tableName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + tableName);
+        db.close();
     }
 
     // új User hozzáadása (regisztráció)
