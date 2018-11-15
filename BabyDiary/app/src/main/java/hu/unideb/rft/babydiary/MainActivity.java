@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     BabyDiaryDBHandler mydb;
-    boolean loggedIn = false;
+    boolean loggedIn = true;
 
 
     @Override

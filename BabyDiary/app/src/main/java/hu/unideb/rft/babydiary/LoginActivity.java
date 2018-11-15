@@ -55,7 +55,7 @@ public class LoginActivity extends Activity{
             }
         }
         else if (v.getId() == tv_elfelejtettJelszo.getId()){
-            //TODO uj jelszót generálni, beírni DB-be és elküldeni a megadott emailcímre
+            //TODO uj jelszót generálni, átírni DB-be és elküldeni a megadott emailcímre
             Toast.makeText(this, "Az új jelszót elküldtük a megadott emailcímre.", Toast.LENGTH_SHORT).show();
         }
         else if (v.getId() == tv_nemRegelt.getId()){

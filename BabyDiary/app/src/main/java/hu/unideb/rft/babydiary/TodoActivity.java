@@ -2,6 +2,7 @@ package hu.unideb.rft.babydiary;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -34,6 +35,7 @@ public class TodoActivity extends Activity{
         setContentView(R.layout.activity_todo);
         myCalendar = Calendar.getInstance();
         et_datum = findViewById(R.id.todo_et_datum);
+        et_ido = findViewById(R.id.todo_et_ido);
 
     }
 
@@ -44,6 +46,19 @@ public class TodoActivity extends Activity{
             new DatePickerDialog(this, date, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        }
+        else if(v.getId() == et_ido.getId()){
+            int ora = myCalendar.get(Calendar.HOUR_OF_DAY);
+            int perc = myCalendar.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int kivalasztottOra, int kivalasztottPerc) {
+                    et_ido.setText(kivalasztottOra + ":" + kivalasztottPerc);
+                }
+            }, ora, perc, true);
+            mTimePicker.setTitle("Válassz időpontot");
+            mTimePicker.show();
         }
 
 
@@ -70,14 +85,6 @@ public class TodoActivity extends Activity{
         }
 
     };
-
-
-
-
-
-
-
-
 
 }
 
