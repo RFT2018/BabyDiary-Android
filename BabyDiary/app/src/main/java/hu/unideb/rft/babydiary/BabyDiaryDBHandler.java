@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Bro on 2018. 11. 11..
+ * Created by Vozarpet on 2018. 11. 11..
  * DB kezelése, tábla műveletek
  */
 
